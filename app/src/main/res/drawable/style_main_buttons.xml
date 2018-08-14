@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape>
+            <corners android:radius="10dip"/>
+            <gradient android:type="radial" android:gradientRadius="150dp"
+                android:startColor="@color/todoButtonEnd" android:endColor="@color/todoButtonStart"/>
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <corners android:radius="10dip"/>
+            <gradient android:type="radial" android:gradientRadius="150dp"
+                android:startColor="@color/todoButtonStart" android:endColor="@color/todoButtonEnd"/>
+        </shape>
+    </item>
+
+</selector>
