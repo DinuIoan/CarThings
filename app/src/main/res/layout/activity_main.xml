@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/style_main_background">
+    tools:context=".MainActivity">
 
 
     <Button
@@ -37,4 +36,14 @@
         app:layout_constraintTop_toBottomOf="@+id/button"
         app:layout_constraintVertical_bias="0.314"
         android:background="@drawable/style_main_buttons"/>
+
+    <TextView
+        android:id="@+id/title_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="162dp"
+        tools:layout_editor_absoluteY="2dp" />
 </android.support.constraint.ConstraintLayout>

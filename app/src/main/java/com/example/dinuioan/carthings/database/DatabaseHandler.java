@@ -58,7 +58,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 " )";
         sqLiteDatabase.execSQL(CREATE_CAR_TABLE);
         sqLiteDatabase.execSQL(CREATE_CAR_THINGS_TABLE);
-        sqLiteDatabase.close();
 
     }
 
