@@ -20,6 +20,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final String CAR_TABLE = "car";
     private static final String CAR_TYPE = "car_type";
+    private static final String MAIN_CAR = "is_main_car";
 
     private static final String CAR_THING_TABLE = "car_things";
     private static final String NAME = "name";
@@ -41,7 +42,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_CAR_TABLE = "create table " + CAR_TABLE +
                 " ( "
                     + ID + " integer primary key autoincrement, "
-                    + CAR_TYPE + " text " +
+                    + CAR_TYPE + " text, "
+                    + MAIN_CAR + " integer " +
                 " )";
         String CREATE_CAR_THINGS_TABLE = "create table " + CAR_THING_TABLE +
                 " ( "
@@ -72,7 +74,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void addCar(Car car) {
         SQLiteDatabase database = getWritableDatabase();
         String ADD_CAR = "insert into " + CAR_TABLE +
-                " values(null, '" + car.getType() + "')" ;
+                " values(null, '" + car.getType() + "', '" + car.getMainCar() + "')" ;
         database.execSQL(ADD_CAR);
         database.close();
     }
@@ -105,6 +107,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             car.setId(cursor.getInt(0));
             car.setType(cursor.getString(1));
+            car.setMainCar(cursor.getInt(2));
         }
         cursor.close();
         database.close();
@@ -145,6 +148,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             Car car = new Car();
             car.setId(cursor.getInt(0));
             car.setType(cursor.getString(1));
+            car.setMainCar(cursor.getInt(2));
             cars.add(car);
         }
         cursor.close();
@@ -174,5 +178,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cursor.close();
         database.close();
         return carThingEntities;
+    }
+
+    public Car getMainCar() {
+        SQLiteDatabase database = getReadableDatabase();
+        String SELECT_MAIN_CAR = "select * from " + CAR_TABLE +
+                " where " + MAIN_CAR + " = " + 1;
+        Cursor cursor = database.rawQuery(SELECT_MAIN_CAR, null);
+        Car car = new Car();
+
+        if (cursor.moveToFirst()) {
+            car.setId(cursor.getInt(0));
+            car.setType(cursor.getString(1));
+            car.setMainCar(cursor.getInt(2));
+        }
+        cursor.close();
+        database.close();
+        return car;
     }
  }

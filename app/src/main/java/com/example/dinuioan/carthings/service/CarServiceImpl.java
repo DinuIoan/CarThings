@@ -16,4 +16,11 @@ public class CarServiceImpl implements CarService {
     public void addCar(Car car) {
         databaseHandler.addCar(car);
     }
+
+    @Override
+    public Car getMainCar() {
+        return databaseHandler.getMainCar();
+    }
+
+
 }
